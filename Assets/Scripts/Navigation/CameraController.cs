@@ -19,28 +19,29 @@ public class CameraController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (!NavController.obstacleSelected) {
+			//Free Look Camera
+			if (Input.GetKey (KeyCode.UpArrow)) {
+				transform.Translate (new Vector3 (0, 0, speed * Time.deltaTime));
+			}
+			if (Input.GetKey (KeyCode.RightArrow)) {
+				transform.Translate (new Vector3 (speed * Time.deltaTime, 0, 0));
+			}
+			if (Input.GetKey (KeyCode.DownArrow)) {
+				transform.Translate (new Vector3 (0, 0, -speed * Time.deltaTime));
+			}
+			if (Input.GetKey (KeyCode.LeftArrow)) {
+				transform.Translate (new Vector3 (-speed * Time.deltaTime, 0, 0));
+			}
 
-		//Free Look Camera
-		if (Input.GetKey (KeyCode.UpArrow)) {
-			transform.Translate (new Vector3 (0, 0, speed * Time.deltaTime));
-		}
-		if (Input.GetKey (KeyCode.RightArrow)) {
-			transform.Translate (new Vector3 (speed * Time.deltaTime, 0, 0));
-		}
-		if (Input.GetKey (KeyCode.DownArrow)) {
-			transform.Translate (new Vector3 (0, 0, -speed * Time.deltaTime));
-		}
-		if (Input.GetKey (KeyCode.LeftArrow)) {
-			transform.Translate (new Vector3 (-speed * Time.deltaTime, 0, 0));
-		}
+			if (Input.GetKey (KeyCode.Mouse0)) {
+				rotationX = transform.localEulerAngles.y + Input.GetAxis ("Mouse X") * sensitivity;
 
-		if(Input.GetKey (KeyCode.Mouse0)){
-			rotationX = transform.localEulerAngles.y + Input.GetAxis ("Mouse X") * sensitivity;
+				rotationY += Input.GetAxis ("Mouse Y") * sensitivity;
+				//rotationY = Mathf.Clamp (rotationY, minY, maxY);
 
-			rotationY += Input.GetAxis("Mouse Y") * sensitivity;
-			//rotationY = Mathf.Clamp (rotationY, minY, maxY);
-
-			transform.localEulerAngles = new Vector3(-rotationY, rotationX, 0);
+				transform.localEulerAngles = new Vector3 (-rotationY, rotationX, 0);
+			}
 		}
 	}
 }

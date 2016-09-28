@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class AgentController : MonoBehaviour {
-
+	
 	private NavMeshAgent navMeshAgent;
 	// Use this for initialization
 	void Start () {
@@ -16,10 +16,9 @@ public class AgentController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (Input.GetMouseButtonDown (0)) {
+		if (Input.GetMouseButtonDown (0) && !NavController.obstacleSelected)  {
 			RaycastHit hit;
 			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-
 			if (Physics.Raycast (ray, out hit)) {
 				//sets agent to be moved
 				if (NavController.agentClicked == "") {
