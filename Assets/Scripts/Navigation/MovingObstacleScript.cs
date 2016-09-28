@@ -19,6 +19,7 @@ public class MovingObstacleScript : MonoBehaviour {
 	public Renderer rend;
 	// Use this for initialization
 	void Start () {
+		//gameObject.AddComponent("MeshRenderer");
 		rend = GetComponent<Renderer> ();
 		rend.enabled = true;
 	}
